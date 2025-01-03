@@ -4,6 +4,7 @@ import { fetchAsync } from "../features/activity/activity-slicer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { base_url } from "../api";
+import Toastify from "toastify-js";
 
 export default function Home() {
   const { activity, loading, error } = useSelector((state) => state.activity);

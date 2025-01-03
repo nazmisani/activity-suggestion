@@ -2,13 +2,14 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { fetchAsync } from "../features/activity/activity-slicer";
 import Toastify from "toastify-js";
+import { base_url } from "../api";
 
 export default function Card({ activity, id }) {
   const dispatch = useDispatch();
 
   async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:3000/activity/${id}`, {
+      await axios.delete(`${base_url}/activity/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },

@@ -83,13 +83,13 @@ export default function Login() {
 
   async function googleLogin(codeResponse) {
     try {
-      const { data } = await axios.post(`http://localhost:3000/google-login`, null, {
+      const { data } = await axios.post(`${base_url}/google-login`, null, {
         headers: {
           token: codeResponse.credential,
         },
       });
-      localStorage.setItem("access_token", data.access_token);
 
+      localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("username", data.username);
       console.log("login google", data.username);
 

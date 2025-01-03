@@ -1,1 +1,1 @@
-export const base_url = "http://localhost:3000";
+export const base_url = "http://funquest.2.0.flavorsoftheworld.shop";

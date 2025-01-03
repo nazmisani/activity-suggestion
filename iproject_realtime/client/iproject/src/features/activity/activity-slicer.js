@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { base_url } from "../../api";
 
 const initialState = {
   loading: false,
@@ -36,7 +37,7 @@ export const fetchAsync = () => async (dispatch) => {
   try {
     dispatch(fetchPending());
 
-    const { data } = await axios.get(`http://localhost:3000/activity`, {
+    const { data } = await axios.get(`${base_url}/activity`, {
       headers: {
         Authorization: `Bearer ${localStorage.access_token}`,
       },

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { base_url } from "../api";
 
 export default function Generate() {
   const [activity, setActivity] = useState("");
@@ -12,7 +13,7 @@ export default function Generate() {
     setError(null);
 
     try {
-      const data = await axios.get("http://localhost:3000/generate-activity", {
+      const data = await axios.get(`${base_url}/generate-activity`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -41,7 +42,7 @@ export default function Generate() {
 
     try {
       await axios.post(
-        "http://localhost:3000/activity",
+        `${base_url}/activity`,
         { name: activity },
         {
           headers: {
@@ -63,15 +64,29 @@ export default function Generate() {
         <h1 className="text-4xl font-bold text-black mb-10 text-center">AI Activity Generator</h1>
         <div className="bg-gradient-to-br from-yellow-200 to-pink-200 border-4 border-black rounded-lg p-6 mb-8 shadow-md">
           <p id="activityResult" className="text-lg text-center">
-            {loading ? "Generating activity..." : activity || "Click 'Generate' to get an activity suggestion!"}
+            {loading
+              ? "Generating activity..."
+              : activity || "Click 'Generate' to get an activity suggestion!"}
           </p>
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
         </div>
         <div className="flex justify-center space-x-6">
-          <button className="px-6 py-3 bg-yellow-400 text-black font-bold border-2 border-black rounded-md shadow-lg hover:bg-yellow-500 hover:border-yellow-500 transition duration-300" onClick={handleGenerate} disabled={loading}>
+          <button
+            className="px-6 py-3 bg-yellow-400 text-black font-bold border-2 border-black rounded-md shadow-lg hover:bg-yellow-500 hover:border-yellow-500 transition duration-300"
+            onClick={handleGenerate}
+            disabled={loading}
+          >
             {loading ? "Generating..." : "Generate"}
           </button>
-          <button className={`px-6 py-3 ${activity ? "bg-pink-400 hover:bg-pink-500 hover:border-pink-500" : "bg-gray-300 cursor-not-allowed"} text-black font-bold border-2 border-black rounded-md shadow-lg transition duration-300`} onClick={handleSave} disabled={!activity || saving}>
+          <button
+            className={`px-6 py-3 ${
+              activity
+                ? "bg-pink-400 hover:bg-pink-500 hover:border-pink-500"
+                : "bg-gray-300 cursor-not-allowed"
+            } text-black font-bold border-2 border-black rounded-md shadow-lg transition duration-300`}
+            onClick={handleSave}
+            disabled={!activity || saving}
+          >
             {saving ? "Saving..." : "Save"}
           </button>
         </div>
