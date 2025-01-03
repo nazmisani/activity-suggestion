@@ -11,7 +11,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GoogleOAuthProvider
       clientId="175831432963-4qn2aum7rsseo2he1gcra0npu579ic1h.apps.googleusercontent.com"
-      redirectUri="http://localhost:5173"
+      redirectUri="https://activity-suggestion-27uh.vercel.app"
     >
       <Provider store={store}>
         <App />
